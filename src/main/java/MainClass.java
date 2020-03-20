@@ -19,7 +19,6 @@ public class MainClass {
         UserResults userResults = new UserResults();
 
 
-//powitaj uzytkownika
         do {
             dataFromScanner = getUserDecision();
             if ((!dataFromScanner.equals("1")) && (!dataFromScanner.equals("2")))
@@ -62,6 +61,8 @@ public class MainClass {
             isAnswerIsCorrect();
 
         }
+        screenMessages.userResult();
+        screenMessages.byeByeMessage();
 
     }
 
@@ -100,7 +101,7 @@ public class MainClass {
             if (userAnswer.equals("1")){
             correctQuestionGivenByUser ++;
             }
-            System.out.println(correctQuestionGivenByUser);}
+            System.out.println("Odpowiedź zapisana");}
     }
 
 

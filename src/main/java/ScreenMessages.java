@@ -44,7 +44,8 @@ public class ScreenMessages {
     }
 
     public String questionToUser(int questionNumber) {
-        messageToUser = "Pytanie nr "+ questionNumber;
+        MainClass mainClass = new MainClass();
+        messageToUser = "Pytanie nr "+ questionNumber + " z "+((int)mainClass.getAllQuestionsGiven());
         System.out.println(messageToUser);
         return messageToUser;
     }
