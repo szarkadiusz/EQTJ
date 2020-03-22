@@ -1,3 +1,5 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class ScreenMessages {
 
@@ -17,13 +19,13 @@ public class ScreenMessages {
     }
 
     public String userResult() {
-       UserResults userResults = new UserResults();
-       MainClass mainClass = new MainClass();
-       result = userResults.calculateResult(
+        UserResults userResults = new UserResults();
+        MainClass mainClass = new MainClass();
+        result = userResults.calculateResult(
                 mainClass.getAllQuestionsGiven(),
                 mainClass.getCorrectQuestionGivenByUser());
 
-       String resultFormatted = String.format("%.2f",result);
+        String resultFormatted = String.format("%.2f", result);
 
         messageToUser = "Twój wynik to " + resultFormatted + " %";
         System.out.println(messageToUser);
@@ -45,7 +47,7 @@ public class ScreenMessages {
 
     public String questionToUser(int questionNumber) {
         MainClass mainClass = new MainClass();
-        messageToUser = "Pytanie nr "+ questionNumber + " z "+((int)mainClass.getAllQuestionsGiven());
+        messageToUser = "Pytanie nr " + questionNumber + " z " + ((int) mainClass.getAllQuestionsGiven());
         System.out.println(messageToUser);
         return messageToUser;
     }
@@ -54,6 +56,13 @@ public class ScreenMessages {
         messageToUser = "Niewłaściwa komenda, wybierz ponownie";
         System.out.println(messageToUser);
         return messageToUser;
+    }
+
+    public void addDateTimeStamp() {
+        LocalDateTime localDateTime = LocalDateTime.now();
+
+        System.out.println("Data i godzina testu "
+                + localDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
     }
 
 }

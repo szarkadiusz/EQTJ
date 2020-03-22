@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.time.LocalDateTime;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -59,9 +60,9 @@ public class MainClass {
         ScreenMessages screenMessages = new ScreenMessages();
         MainClass mainClass = new MainClass();
 
-        for (int i = 1; i < mainClass.allQuestionsGiven; i++) {
+        for (int i = 1; i < mainClass.allQuestionsGiven + 1; i++) {
 
-            int randomNumber=getRandomNumber();
+            int randomNumber = getRandomNumber();
 
             screenMessages.questionToUser(i);
             getQuestionFromDB(randomNumber);
@@ -74,6 +75,7 @@ public class MainClass {
 
         }
         screenMessages.userResult();
+        screenMessages.addDateTimeStamp();
         screenMessages.byeByeMessage();
 
     }
@@ -86,8 +88,7 @@ public class MainClass {
     private static void getQuestionFromDB(int randomNumberForQuestion) {
 
 
-
-        sqlQuery("Tresc_pytania",randomNumberForQuestion);
+        sqlQuery("Tresc_pytania", randomNumberForQuestion);
 
     }
 
@@ -103,7 +104,7 @@ public class MainClass {
         while (!showTheAnswer.equals("1"));
         {
 
-            sqlQuery("Przykładowa_odpowiedz",randomNumberForAnswer);
+            sqlQuery("Przykładowa_odpowiedz", randomNumberForAnswer);
 
         }
     }
@@ -154,10 +155,10 @@ public class MainClass {
         return returnStatement;
     }
 
-private static int getRandomNumber(){
+    private static int getRandomNumber() {
 
-    int randomNum=random.nextInt(102);
-    return randomNum;
+        int randomNum = random.nextInt(102);
+        return randomNum;
 
     }
     public double getCorrectQuestionGivenByUser() {
