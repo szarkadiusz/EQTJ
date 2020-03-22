@@ -61,11 +61,13 @@ public class MainClass {
 
         for (int i = 1; i < mainClass.allQuestionsGiven; i++) {
 
+            int randomNumber=getRandomNumber();
+
             screenMessages.questionToUser(i);
-            getQuestionFromDB();
+            getQuestionFromDB(randomNumber);
 
             screenMessages.showTheAnswer();
-            getAnswerFromDB();
+            getAnswerFromDB(randomNumber);
 
             screenMessages.answerValidation();
             isAnswerIsCorrect();
@@ -81,15 +83,15 @@ public class MainClass {
         screenMessages.byeByeMessage();
     }
 
-    private static void getQuestionFromDB() {
+    private static void getQuestionFromDB(int randomNumberForQuestion) {
 
 
-        System.out.println("wyciagnij pytanie z mysql");
-        sqlQuery("select Tresc_Pytania from eqfj_db where Numer_pytania=");
+
+        sqlQuery("Tresc_pytania",randomNumberForQuestion);
 
     }
 
-    private static void getAnswerFromDB() {
+    private static void getAnswerFromDB(int randomNumberForAnswer) {
         ScreenMessages screenMessages = new ScreenMessages();
         MainClass mainClass = new MainClass();
         do {
@@ -100,7 +102,8 @@ public class MainClass {
         }
         while (!showTheAnswer.equals("1"));
         {
-            System.out.println("wyciagnij odpowiedz z mysql");
+
+            sqlQuery("Przykładowa_odpowiedz",randomNumberForAnswer);
 
         }
     }
@@ -123,11 +126,9 @@ public class MainClass {
         }
     }
 
-    private static String sqlQuery(String commandForSqlQuery) {
-        int randomQuestion=random.nextInt(102);
+    private static String sqlQuery(String neededColumn, int neededRow) {
+        MainClass mainClass = new MainClass();
 
-
-//commandForSqlQuery ="select * from eqfj_db where rowid ()=random.nextInt(102); " ;
         String returnStatement = "";
         try {
 
@@ -136,13 +137,14 @@ public class MainClass {
             Statement stmt = con.createStatement();
 
             StringBuilder sb = new StringBuilder();
-            sb.append(commandForSqlQuery);
-            sb.append(randomQuestion);
+            sb.append("select ");
+            sb.append(neededColumn);
+            sb.append(" from eqfj_db where Numer_pytania= ");
+            sb.append(neededRow);
             ResultSet rs = stmt.executeQuery(String.valueOf(sb));
 
             while (rs.next()) {
                 returnStatement = rs.getInt(1) + " " + rs.getString("Przykładowa_odpowiedz") + " " + rs.getString("Tresc_pytania");
-
             }
 
             con.close();
@@ -152,7 +154,12 @@ public class MainClass {
         return returnStatement;
     }
 
+private static int getRandomNumber(){
 
+    int randomNum=random.nextInt(102);
+    return randomNum;
+
+    }
     public double getCorrectQuestionGivenByUser() {
         return correctQuestionGivenByUser;
     }
