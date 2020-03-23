@@ -1,11 +1,10 @@
-import com.sun.tools.javac.Main;
+
 import lombok.Getter;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.time.LocalDateTime;
 import java.util.Random;
 import java.util.Scanner;
 
