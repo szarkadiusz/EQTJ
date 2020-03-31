@@ -6,19 +6,19 @@ public class ScreenMessages {
     private String messageToUser;
     private double result;
 
-    public String welcomeMessage() {
-        messageToUser = "Witaj w Eleven Questions To J\nRozpocznij grę[1] Wyjdź [2]";
+    public void welcomeMessage() {
+        messageToUser = "Witaj w Eleven Questions To J\nRozpocznij grę[1] Wyjdź [2] Dodaj pytanie [3]";
         System.out.println(messageToUser);
-        return messageToUser;
+
     }
 
-    public String byeByeMessage() {
+    public void byeByeMessage() {
         messageToUser = "Dziekuję za grę, następnym razem będzie lepiej !";
         System.out.println(messageToUser);
-        return messageToUser;
+
     }
 
-    public String userResult() {
+    public void userResult() {
         UserResults userResults = new UserResults();
         MainClass mainClass = new MainClass();
         result = userResults.calculateResult(
@@ -29,33 +29,32 @@ public class ScreenMessages {
 
         messageToUser = "Twój wynik to " + resultFormatted + " %";
         System.out.println(messageToUser);
-        return messageToUser;
+
     }
 
-    public String showTheAnswer() {
+    public void showTheAnswer() {
         messageToUser = "Pokaż prawidłową odpowiedź [Wybierz [1] ] ";
         System.out.println(messageToUser);
-        return messageToUser;
+
     }
 
 
-    public String answerValidation() {
+    public void answerValidation() {
         messageToUser = "Czy poprawnie odpowiedziałeś na pytanie ? \nTak [1] Nie [2] ";
         System.out.println(messageToUser);
-        return messageToUser;
+
     }
 
-    public String questionToUser(int questionNumber) {
+    public void questionToUser(int questionNumber) {
         MainClass mainClass = new MainClass();
         messageToUser = "Pytanie nr " + questionNumber + " z " + ((int) mainClass.getAllQuestionsGiven());
         System.out.println(messageToUser);
-        return messageToUser;
+
     }
 
-    public String wrongCommand() {
+    public void wrongCommand() {
         messageToUser = "Niewłaściwa komenda, wybierz ponownie";
         System.out.println(messageToUser);
-        return messageToUser;
     }
 
     public void addDateTimeStamp() {
