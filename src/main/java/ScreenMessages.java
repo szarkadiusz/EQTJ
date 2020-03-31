@@ -1,3 +1,5 @@
+import com.sun.tools.javac.Main;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -63,5 +65,22 @@ public class ScreenMessages {
         System.out.println("Data i godzina testu "
                 + localDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
     }
+    public void receiveQuestion() {
+        messageToUser = "Podaj pytanie";
+        System.out.println(messageToUser);
+    }
+    public void receiveQuestionAnswer() {
+        messageToUser = "Podaj odpowiedź na pytanie";
+        System.out.println(messageToUser);
+    }
+
+    public void receiveQuestionSummary() {
+        messageToUser = "Dodano pytanie do Bazy";
+        System.out.println(messageToUser);
+        System.out.println();
+        System.out.println();
+
+    }
+
 
 }
