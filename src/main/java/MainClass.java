@@ -1,10 +1,7 @@
 
 import lombok.Getter;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -130,18 +127,16 @@ public class MainClass {
         MainClass mainClass = new MainClass();
 
         String returnStatement = "";
+        String sqlQue = "select " + neededColumn + " from eqfj_db where Numer_pytania=?";
         try {
+            String url = "jdbc:mysql://localhost:3306/eqfj_db?useSSL=false";
+            Connection con = DriverManager.getConnection(url, "root", "Aras12");
 
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/eqfj_db?useSSL=false", "root", "Aras12");
 
-            Statement stmt = con.createStatement();
+            PreparedStatement preparedStatement = con.prepareStatement(sqlQue);
+            preparedStatement.setInt(1, neededRow);
 
-            StringBuilder sb = new StringBuilder();
-            sb.append("select ");
-            sb.append(neededColumn);
-            sb.append(" from eqfj_db where Numer_pytania= ");
-            sb.append(neededRow);
-            ResultSet rs = stmt.executeQuery(String.valueOf(sb));
+            ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
                 returnStatement = rs.getInt(1) + " " + rs.getString("Przykładowa_odpowiedz") + " " + rs.getString("Tresc_pytania");
@@ -160,6 +155,7 @@ public class MainClass {
         return randomNum;
 
     }
+
     public double getCorrectQuestionGivenByUser() {
         return correctQuestionGivenByUser;
     }

@@ -25,13 +25,13 @@
     <show-object-properties value="true" />
     <loaded-nodes>
       <connection connection-id="d562439e-ebce-4c5c-89d0-84a99537830f">
-        <schema name="eqfj_db" object-types="constraint, view, procedure, function, index, column, dataset trigger, table" />
+        <schema name="eqfj_db" object-types="constraint, table, index, dataset trigger, procedure, column, view, function" />
       </connection>
     </loaded-nodes>
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="d562439e-ebce-4c5c-89d0-84a99537830f">
-      <console name="ConnectionToEQFJ" type="STANDARD" schema="" session="Main" />
+      <console name="ConnectionToEQFJ" type="STANDARD" schema="" session="Main"><![CDATA[select * from Numer_pytania]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
